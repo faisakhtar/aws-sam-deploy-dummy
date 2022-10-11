@@ -39,7 +39,7 @@ Resources:
         - x86_64
       MemorySize: 128
       Timeout: 100
-      FunctionName: 'fishinsea-${DeploymentEnvironment}'
+      FunctionName: !Sub 'fishinsea-${DeploymentEnvironment}'
       Description: A Lambda function that returns fish.
       Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
@@ -65,7 +65,7 @@ Resources:
         - x86_64
       MemorySize: 128
       Timeout: 100
-      FunctionName: 'allaboutshark-${DeploymentEnvironment}'
+      FunctionName: !Sub 'allaboutshark-${DeploymentEnvironment}'
       Description: Just sharks
       Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
@@ -80,5 +80,5 @@ Resources:
   oceanqueue:
     Type: AWS::SQS::Queue
     Properties:
-      QueueName: 'OceanQueue-${DeploymentEnvironment}'
+      QueueName: !Sub 'OceanQueue-${DeploymentEnvironment}'
       VisibilityTimeout: 100
