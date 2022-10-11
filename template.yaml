@@ -12,6 +12,16 @@ Description: >-
 Transform:
 - AWS::Serverless-2016-10-31
 
+# Parameters group
+Parameters:
+  DeploymentEnvironment:
+    Type: String
+    Description: 'The deployment environment:'
+    Default: dev
+    AllowedValues:
+      - dev
+      - stage
+
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
@@ -29,7 +39,7 @@ Resources:
         - x86_64
       MemorySize: 128
       Timeout: 100
-      FunctionName: fishinsea
+      FunctionName: fishinsea-${DeploymentEnvironment}
       Description: A Lambda function that returns fish.
       Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
@@ -55,7 +65,7 @@ Resources:
         - x86_64
       MemorySize: 128
       Timeout: 100
-      FunctionName: allaboutshark
+      FunctionName: allaboutshark-${DeploymentEnvironment}
       Description: Just sharks
       Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
@@ -70,5 +80,5 @@ Resources:
   oceanqueue:
     Type: AWS::SQS::Queue
     Properties:
-      QueueName: OceanQueue
+      QueueName: OceanQueue-${DeploymentEnvironment}
       VisibilityTimeout: 100
