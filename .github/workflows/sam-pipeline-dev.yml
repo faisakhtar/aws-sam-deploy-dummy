@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - dev
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -20,4 +20,4 @@ jobs:
 # Run Unit tests- Specify unit tests here 
 
 # sam deploy
-      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name aqua --parameter-overrides DeploymentEnvironment=dev
+      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name aqua-dev --parameter-overrides DeploymentEnvironment=dev
