@@ -53,6 +53,7 @@ Resources:
         ScheduledFunction:
           Type: Schedule
           Properties:
+            Name: !Sub 'fishschedule-${DeploymentEnvironment}'
             Schedule: rate(1 day) 
       
   lotsofsharks:
