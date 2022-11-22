@@ -46,6 +46,9 @@ Resources:
         # Give Lambda basic execution Permission to the helloFromLambda
         - AWSLambdaBasicExecutionRole
 
+      Tags:
+        Env: dev
+
       Events:
         ScheduledFunction:
           Type: Schedule
