@@ -44,7 +44,7 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: '/aws/lambda/samplefunction-dev'
-      RetentionInDays : 30
+      RetentionInDays : 10
       Tags:
          - Key: 'Env'
            Value: 'dev'
