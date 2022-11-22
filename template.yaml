@@ -39,11 +39,12 @@ Resources:
             Name: !Sub 'sampleschedule'
             Schedule: rate(1 day)
 
+ # Log Group Name must be /aws/lambda/<exactLambdaName>
   MyLambdaFunctionLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: "SampleLogGroupLogs"
+      LogGroupName: '/aws/lambda/samplefunction-dev'
       RetentionInDays : 30
       Tags:
          - Key: 'Env'
-           Value: 'Dev'
+           Value: 'dev'
