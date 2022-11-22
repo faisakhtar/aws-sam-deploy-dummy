@@ -45,7 +45,11 @@ Resources:
       Policies:
         # Give Lambda basic execution Permission to the helloFromLambda
         - AWSLambdaBasicExecutionRole
-
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt oceanqueue.QueueName
+      Environment:
+        Variables:
+          QUEUE_URL: !Ref oceanqueue
       Events:
         ScheduledFunction:
           Type: Schedule
@@ -53,3 +57,30 @@ Resources:
             Name: !Sub 'fishschedule-${DeploymentEnvironment}'
             Schedule: rate(1 day) 
       
+  lotsofsharks:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/lotsofsharks/
+      Handler: lotsofsharks.lambdahandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      FunctionName: !Sub 'allaboutshark-${DeploymentEnvironment}'
+      Description: Just sharks
+      Policies:
+        # Give Lambda basic execution Permission to the helloFromLambda
+        - AWSLambdaBasicExecutionRole
+      Events:
+        SQSEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt  oceanqueue.Arn
+            BatchSize: 1
+            Enabled: true 
+  oceanqueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub 'OceanQueue-${DeploymentEnvironment}'
+      VisibilityTimeout: 100
