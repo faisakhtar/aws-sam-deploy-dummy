@@ -3,7 +3,7 @@
  */
 exports.lambdahandler = async () => {
     // If you change this message, you will need to change hello-from-lambda.test.js
-    const message = 'Hello from sample!';
+    const message = 'Hello from sample on aqua stack!';
 
     // All log statements are written to CloudWatch
     console.info(`${message}`);

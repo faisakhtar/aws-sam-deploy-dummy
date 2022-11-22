@@ -38,4 +38,12 @@ Resources:
           Properties:
             Name: !Sub 'sampleschedule'
             Schedule: rate(1 day)
-      
+
+  MyLambdaFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: "SampleLogGroupLogs"
+      RetentionInDays : 30
+      Tags:
+         - Key: 'Env'
+           Value: 'Dev'
