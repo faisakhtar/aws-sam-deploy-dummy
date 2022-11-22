@@ -55,4 +55,6 @@ Resources:
           Properties:
             Name: !Sub 'fishschedule-${DeploymentEnvironment}'
             Schedule: rate(1 day) 
+            Tags:
+              Env: dev
       
