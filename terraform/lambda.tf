@@ -41,7 +41,7 @@ resource "aws_lambda_event_source_mapping" "lambda2eventmapping" {
     aws_sqs_queue.terraform_queue2,
     aws_lambda_function.sampletf2
   ]
-}
+} 
 
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"
