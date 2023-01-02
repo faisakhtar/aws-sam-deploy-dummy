@@ -16,6 +16,24 @@ resource "aws_lambda_function" "sampletf" {
 }
 
 
+resource "aws_lambda_function" "sampletf2" {
+  filename         = "../sampletf2.zip"
+  function_name    = "sampletf2"
+  role             = "${aws_iam_role.iam_for_lambda.arn}"
+  handler          = "app.lambda_handler"
+  source_code_hash = filebase64sha256("../sampletf2.zip")
+  runtime          = "python3.9"
+  memory_size      = 256
+  timeout          = 300
+
+  environment {
+    variables = {
+      env = "dev"
+      owner ="faisal"
+    }
+  }
+}
+
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"
 
