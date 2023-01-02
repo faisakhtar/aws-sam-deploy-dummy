@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "sampletf" {
-  filename         = "sampletf.zip"
+  filename         = "../sampletf.zip"
   function_name    = "sampletf"
   role             = "${aws_iam_role.iam_for_lambda2.arn}"
   handler          = "app.lambda_handler"
