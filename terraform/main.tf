@@ -6,7 +6,7 @@ terraform {
     }
   }
 backend "s3" {
-        bucket = "fais_terraform_bucket_s3"
+        bucket = "faisterraformbuckets3"
         key = "state.tfstate"
         region = "us-east-1"
   }
