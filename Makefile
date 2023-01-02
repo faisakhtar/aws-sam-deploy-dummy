@@ -1,2 +1,2 @@
 sampletf:
-    zip -j sampletf.zip functions/tf/app.py
+	zip -j sampletf.zip functions/tf/app.py
