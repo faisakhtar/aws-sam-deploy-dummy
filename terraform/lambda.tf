@@ -25,7 +25,10 @@ resource "aws_lambda_function" "sampletf2" {
   runtime          = "python3.9"
   memory_size      = 256
   timeout          = 300
-
+    event_source_mappings {
+    event_source_arn = "${aws_sqs_queue.terraform_queue2.arn}"
+    batch_size       = 1
+  }
   environment {
     variables = {
       env = "dev"
