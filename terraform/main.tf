@@ -6,7 +6,7 @@ terraform {
     }
   }
 backend "s3" {
-        bucket = "faisterraformbuckets3"
+        bucket = "faisterraformbuckets3" #This must exist already.
         key = "state.tfstate"
         region = "us-east-1"
   }
