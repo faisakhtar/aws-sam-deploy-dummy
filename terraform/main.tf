@@ -6,7 +6,7 @@ terraform {
     }
   }
 backend "s3" {
-        bucket = "${aws_s3_bucket.s3_terraform_state.id}"
+        bucket = "terraform"
         key = "state.tfstate"
         region = "us-east-1"
   }
