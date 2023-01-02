@@ -25,16 +25,22 @@ resource "aws_lambda_function" "sampletf2" {
   runtime          = "python3.9"
   memory_size      = 256
   timeout          = 300
-    event_source_mappings {
-    event_source_arn = "${aws_sqs_queue.terraform_queue2.arn}"
-    batch_size       = 1
-  }
-  environment {
+    environment {
     variables = {
       env = "dev"
       owner ="faisal"
     }
   }
+}
+
+resource "aws_lambda_event_source_mapping" "lambda2eventmapping" {
+  event_source_arn = aws_sqs_queue.terraform_queue2.arn
+  function_name    = aws_lambda_function.sampletf2.arn
+  
+  depends_on = [
+    aws_sqs_queue.terraform_queue2,
+    aws_lambda_function.sampletf2
+  ]
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
