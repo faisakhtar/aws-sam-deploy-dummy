@@ -3,7 +3,7 @@ resource "aws_lambda_function" "sampletf" {
   function_name    = "sampletf"
   role             = "${aws_iam_role.iam_for_lambda.arn}"
   handler          = "app.lambda_handler"
-  source_code_hash = "${base64sha256(file("../sampletf.zip"))}"
+  source_code_hash = filebase64sha256("../sampletf.zip")
   runtime          = "python3.9"
   memory_size      = 256
   timeout          = 300
