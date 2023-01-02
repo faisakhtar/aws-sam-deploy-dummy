@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "sampletf" {
   filename         = "../sampletf.zip"
   function_name    = "sampletf"
-  role             = "${aws_iam_role.iam_for_lambda2.arn}"
+  role             = "${aws_iam_role.iam_for_lambda.arn}"
   handler          = "app.lambda_handler"
   source_code_hash = filebase64sha256("../sampletf.zip")
   runtime          = "python3.9"
@@ -16,8 +16,8 @@ resource "aws_lambda_function" "sampletf" {
 }
 
 
-resource "aws_iam_role" "iam_for_lambda2" {
-  name = "iam_for_lambda2"
+resource "aws_iam_role" "iam_for_lambda" {
+  name = "iam_for_lambda"
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
