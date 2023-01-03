@@ -1,3 +1,4 @@
+
 resource "aws_lambda_function" "sampletf" {
   filename         = "../sampletf.zip"
   function_name    = "sampletf"
