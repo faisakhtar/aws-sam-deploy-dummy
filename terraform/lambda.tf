@@ -1,4 +1,10 @@
 
+#data "archive_file" "init" {
+#  type        = "zip"
+#  source_file = "../functions/tf/app.py"
+#  output_path = "../functions/tf/app.zip"
+#}
+
 resource "aws_lambda_function" "sampletf" {
   filename         = "../sampletf.zip"
   function_name    = "sampletf"
@@ -13,6 +19,10 @@ resource "aws_lambda_function" "sampletf" {
     variables = {
       EXAMPLE_VARIABLE = "example value"
     }
+  }
+    tags = {
+    env = var.env
+    Owner = "Faisal"
   }
 }
 
@@ -31,6 +41,10 @@ resource "aws_lambda_function" "sampletf2" {
       env = "dev"
       owner ="faisal"
     }
+  }
+    tags = {
+    env = var.env
+    Owner = "Faisal"
   }
 }
 
@@ -62,4 +76,9 @@ resource "aws_iam_role" "iam_for_lambda" {
       },
     ]
   })
+    tags = {
+    env = var.env
+    Owner = "Faisal"
+  }
+  
 }
