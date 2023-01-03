@@ -142,4 +142,4 @@ dist
 .pnp.*
 
 # Custom
-lambdas_packaged/*
+lambdas_packaged/*.zip
