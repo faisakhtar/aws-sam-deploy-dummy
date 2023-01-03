@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build function code
-      run: make all
+      run: make all # make file is no longer required so can be removed.
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v2
       with:

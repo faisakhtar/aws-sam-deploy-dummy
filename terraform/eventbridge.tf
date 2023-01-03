@@ -52,12 +52,14 @@ resource "aws_cloudwatch_event_target" "eventbridge_target_sample" {
     input_paths = {
       param1 = "$.detail.param1"
       param2 = "$.detail.param2"
+      param3 = "$.detail.param3"
     }
 
     input_template = <<JSON
     {
       "output_param1": <param1>,
-      "output_param2": <param2>
+      "output_param2": <param2>,
+      "output_param3": <param3>
     }
     JSON
   }
