@@ -2,20 +2,20 @@
 data "archive_file" "sampletf_archive" {
   type        = "zip"
   source_file = "../functions/tf/app.py"
-  output_path = "../lambdas_packaged/sampletf.zip"
+  output_path = "../packages/sampletf.zip"
 }
 
 data "archive_file" "sampletf2_archive" {
   type        = "zip"
   source_file = "../functions/tf2/app.py"
-  output_path = "../lambdas_packaged/sampletf2.zip"
+  output_path = "../packages/sampletf2.zip"
 }
 
 resource "aws_lambda_function" "sampletf" {
   depends_on = [
     data.archive_file.sampletf_archive
   ]
-  filename         = "../lambdas_packaged/sampletf.zip"
+  filename         = "../packages/sampletf.zip"
   function_name    = "sampletf"
   role             = "${aws_iam_role.iam_for_lambda.arn}"
   handler          = "app.lambda_handler"
@@ -35,13 +35,12 @@ resource "aws_lambda_function" "sampletf" {
   }
 }
 
-
 resource "aws_lambda_function" "sampletf2" {
 
   depends_on = [
     data.archive_file.sampletf2_archive
   ]
-  filename         = "../lambdas_packaged/sampletf2.zip"
+  filename         = "../packages/sampletf2.zip"
   function_name    = "sampletf2"
   role             = "${aws_iam_role.iam_for_lambda.arn}"
   handler          = "app.lambda_handler"

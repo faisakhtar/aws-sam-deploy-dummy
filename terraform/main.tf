@@ -10,6 +10,13 @@ backend "s3" {
         key = "state.tfstate"
         region = "us-east-1"
   }
+#  lock {
+#    backend "dynamodb" {
+#      table = "my-tfstate-locks"
+#      region = "us-west-2"
+#    }
+#  }
+
 
   required_version = ">= 1.2.0"
 }
