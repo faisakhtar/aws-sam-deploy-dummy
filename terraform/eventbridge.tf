@@ -109,7 +109,7 @@ resource "aws_cloudwatch_event_connection" "slack_event_connection" {
 resource "aws_cloudwatch_event_api_destination" "slack_event_destination" {
   name                             = "slack-terraform-destination"
   description                      = "Slack API Destination"
-  invocation_endpoint              = "https://hooks.slack.com/services/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"
+  invocation_endpoint              = ""
   http_method                      = "POST"
   invocation_rate_limit_per_second = 20
   connection_arn                   = aws_cloudwatch_event_connection.slack_event_connection.arn
