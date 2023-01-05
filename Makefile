@@ -1,7 +1,0 @@
-all: sampletf sampletf2
-
-sampletf:
-	cd functions/tf && zip -j ../../sampletf.zip app.py
-
-sampletf2:
-	cd functions/tf2 && zip -j ../../sampletf2.zip app.py
