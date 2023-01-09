@@ -1,7 +1,7 @@
 
 data "archive_file" "sampletf_archive" {
   type        = "zip"
-  source_file = "../functions/tf/app.py"
+  source_dir = "../functions/tf/"
   output_path = "../packages/sampletf.zip"
 }
 
@@ -74,7 +74,8 @@ resource "null_resource" "sam_metadata_aws_lambda_function_sampletf2" {
         resource_name = "aws_lambda_function.sampletf2"
         resource_type = "ZIP_LAMBDA_FUNCTION"
         original_source_code = "../functions/tf2"
-        built_output_path = "locallambdas/sampletf2.zip" # The location of this could not be found when using ../functions/tf2/etc.
+       # built_output_path = "locallambdas/sampletf2.zip" # The location of this could not be found when using ../functions/tf2/etc.
+        built_output_path = "../${path.module}/packages/sampletf2.zip" # The location of this could not be found when using ../functions/tf2/etc.
     }
 }
 
