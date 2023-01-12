@@ -3,13 +3,13 @@ on:
     branches:
       - stage
 jobs:
-  Terraform-Plan:
+  Terraform-Apply:
     permissions:
       id-token: write
       contents: read
       actions: write
     runs-on: ubuntu-latest
-    name: Apply Terraform Plan
+    name: Terraform Apply
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -25,5 +25,6 @@ jobs:
         with:
           path: ./terraform/
           var_file: ./terraform/variables.tfvars
+          label: integration
           auto_approve: true
           
