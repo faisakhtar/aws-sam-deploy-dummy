@@ -2,8 +2,6 @@ on:
   pull_request:
     branches:
       - stage
-    paths:
-      - '!.github/workflows/**'
 jobs:
   Terraform-Plan:
     permissions:
