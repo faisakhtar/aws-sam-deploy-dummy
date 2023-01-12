@@ -8,19 +8,18 @@ jobs:
       id-token: write
       contents: read
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Install Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.3.7
       - name: Assume role
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::231992682363:role/githuboidcrole
           aws-region: us-east-1
-      - name: Initialize Terraform
-        run: terraform -chdir=./terraform/ init
-      - name: Plan Terraform changes
-        run: terraform -chdir=./terraform/ plan
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
+        with:
+          path: ./terraform/
+          var_file: ./terraform/variables.tfvars
