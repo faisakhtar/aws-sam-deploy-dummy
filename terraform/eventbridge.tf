@@ -5,7 +5,6 @@ resource "aws_cloudwatch_event_rule" "examplegit" {
 
   tags = {
     env = var.env
-    Owner = "Faisal"
   }
 }
 
@@ -14,13 +13,13 @@ resource "aws_cloudwatch_event_rule" "eventbridge_rule_sample" {
   name        = "triggertocloudwatch"
   description = "Sample deployment using terraform"
 
-  event_pattern = <<PATTERN
+  event_pattern = <<JSON
   {
     "source": [
       "Trigger Cloudwatch Log"
     ]
   }
-  PATTERN
+  JSON
   tags = {
     env = var.env
     Owner = var.owner
@@ -45,9 +44,9 @@ resource "aws_cloudwatch_event_target" "eventbridge_target_sample" {
     maximum_retry_attempts = 1
     maximum_event_age_in_seconds = 120
   }
-#  dead_letter_config {
-#    arn = aws_sqs_queue.terraform_dlq_queue.arn
-#  }
+  dead_letter_config {
+    arn = aws_sqs_queue.terraform_dlq_queue.arn
+  }
   input_transformer {
     input_paths = {
       param1 = "$.detail.param1"
@@ -92,7 +91,6 @@ resource "aws_cloudwatch_event_target" "eventbridge_slack_target" {
   }
 }
 
-# Create API connection
 resource "aws_cloudwatch_event_connection" "slack_event_connection" {
   name               = "slack-terraform-connection"
   description        = "Slack connection via Terraform"
