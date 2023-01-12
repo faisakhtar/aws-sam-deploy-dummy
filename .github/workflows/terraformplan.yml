@@ -26,4 +26,5 @@ jobs:
         with:
           path: ./terraform/
           var_file: ./terraform/variables.tfvars
+          label: integration
           
