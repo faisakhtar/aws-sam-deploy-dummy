@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "examplegit" {
   name        = "example-rule-git"
   description = "Sample deployment using github actions"
-  schedule_expression = "cron(0 10 * * ? *)"
+  schedule_expression = "cron(0 11 * * ? *)"
 
   tags = {
     env = var.env
