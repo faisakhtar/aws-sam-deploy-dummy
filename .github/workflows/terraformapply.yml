@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - stage
+jobs:
+  Terraform-Plan:
+    permissions:
+      id-token: write
+      contents: read
+      actions: write
+    runs-on: ubuntu-latest
+    name: Apply Terraform Plan
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Assume role
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::231992682363:role/githuboidcrole
+          aws-region: us-east-1
+      - name: terraform apply
+        uses: dflook/terraform-apply@v1
+        with:
+          path: ./terraform/
+          var_file: ./terraform/variables.tfvars
+          auto_approve: true
+          

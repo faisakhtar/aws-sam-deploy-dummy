@@ -1,10 +1,5 @@
 version = 0.1
 [default]
-[default.deploy]
-[default.deploy.parameters]
-stack_name = "aqua"
-s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-skl8f7ajdkfn"
-s3_prefix = "aqua"
-region = "us-east-1"
-capabilities = "CAPABILITY_IAM"
-image_repositories = []
+[default.build.parameters]
+hook_name = "terraform"
+beta_features = true

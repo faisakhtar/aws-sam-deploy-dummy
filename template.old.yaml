@@ -1,0 +1,86 @@
+# This is the SAM template that represents the architecture of your serverless application
+# https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-basics.html
+
+# The AWSTemplateFormatVersion identifies the capabilities of the template
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/format-version-structure.html
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  fish
+
+# Transform section specifies one or more macros that AWS CloudFormation uses to process your template
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-section-structure.html
+Transform:
+- AWS::Serverless-2016-10-31
+
+# Parameters group
+Parameters:
+  DeploymentEnvironment:
+    Type: String
+    Description: 'The deployment environment:'
+    Default: dev
+    AllowedValues:
+      - dev
+      - stage
+      - prod
+
+# Resources declares the AWS resources that you want to include in the stack
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
+Resources:
+  # Each Lambda function is defined by properties:
+  # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+
+  # This is a Lambda function config associated with the source code: hello-from-lambda.js
+  lotsoffish:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/lotsoffish/
+      Handler: lotsoffish.lambdahandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      FunctionName: !Sub 'fishinsea-${DeploymentEnvironment}'
+      Description: A Lambda function that returns fish.
+      Policies:
+        # Give Lambda basic execution Permission to the helloFromLambda
+        - AWSLambdaBasicExecutionRole
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt oceanqueue.QueueName
+      Environment:
+        Variables:
+          QUEUE_URL: !Ref oceanqueue
+      Events:
+        ScheduledFunction:
+          Type: Schedule
+          Properties:
+            Name: !Sub 'fishschedule-${DeploymentEnvironment}'
+            Schedule: rate(1 day) 
+      
+  lotsofsharks:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: functions/lotsofsharks/
+      Handler: lotsofsharks.lambdahandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      FunctionName: !Sub 'allaboutshark-${DeploymentEnvironment}'
+      Description: Just sharks
+      Policies:
+        # Give Lambda basic execution Permission to the helloFromLambda
+        - AWSLambdaBasicExecutionRole
+      Events:
+        SQSEvent:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt  oceanqueue.Arn
+            BatchSize: 1
+            Enabled: true 
+  oceanqueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub 'OceanQueue-${DeploymentEnvironment}'
+      VisibilityTimeout: 100

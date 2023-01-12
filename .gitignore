@@ -11,6 +11,14 @@ lerna-debug.log*
 *.aws-sam/
 .vscode
 
+# Terraform dot files
+.terraform
+.terraformrc
+**/.terraform/*
+.terraform.d
+*.tfstate
+*.tfstate.*
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -132,3 +140,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Custom
+lambdas_packaged/*.zip

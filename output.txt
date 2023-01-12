@@ -1,0 +1,1 @@
+{"statusCode": 200, "body": "\"Lambda function 4 successful\""}
