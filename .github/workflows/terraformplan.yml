@@ -7,7 +7,10 @@ jobs:
     permissions:
       id-token: write
       contents: read
+      actions: write
+      pull-requests: write
     runs-on: ubuntu-latest
+    name: Create Terraform Plan
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -23,3 +26,4 @@ jobs:
         with:
           path: ./terraform/
           var_file: ./terraform/variables.tfvars
+          
