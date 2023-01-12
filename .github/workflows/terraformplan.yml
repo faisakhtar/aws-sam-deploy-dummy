@@ -2,8 +2,10 @@ on:
   pull_request:
     branches:
       - stage
+    paths:
+      - '!.github/workflows/**'
 jobs:
-  build-deploy:
+  Terraform-Plan:
     permissions:
       id-token: write
       contents: read

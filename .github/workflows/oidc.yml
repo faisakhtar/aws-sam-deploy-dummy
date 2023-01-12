@@ -2,6 +2,9 @@ on:
   push:
     branches:
       - dev
+    paths:
+      - '!.github/workflows/**'
+
 jobs:
   build-deploy:
     permissions:
