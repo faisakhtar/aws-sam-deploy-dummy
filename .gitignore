@@ -143,3 +143,7 @@ dist
 
 # Custom
 lambdas_packaged/*.zip
+.aws-sam
+**/.aws-sam-iacs/
+packages
+.terraform.lock.hcl
