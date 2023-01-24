@@ -21,7 +21,8 @@ jobs:
 
     - name: Create Lambda layer
       run: |
-        pip install -r layers/requirements.txt -t python
+        mkdir python
+        pip install -r layers/requirements.txt -t python/python
         cd python
         zip -r ../python.zip .
         cd ..
