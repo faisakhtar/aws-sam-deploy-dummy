@@ -1,1 +1,1 @@
-paramiko
+paramiko == 2.12.0
