@@ -30,7 +30,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: python.zip
-        path: fa-dlq-failed-event-messages/python.zip
+        path: python.zip
 
     - name: Create Lambda layer
       run: |
