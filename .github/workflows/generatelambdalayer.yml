@@ -31,4 +31,4 @@ jobs:
 
     - name: Create Lambda layer
       run: |
-        aws lambda publish-layer-version --layer-name testparamiko --description "Test Paramiko" --content S3Bucket=fa-dlq-failed-event-messages,S3Key=python.zip
+        aws lambda publish-layer-version --layer-name testparamiko --description "Test Paramiko" --content S3Bucket=fa-dlq-failed-event-messages,S3Key=python.zip --compatible-runtimes python3.9
