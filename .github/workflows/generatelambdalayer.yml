@@ -27,10 +27,7 @@ jobs:
         cd ..
 
     - name: Upload to S3
-      uses: actions/upload-artifact@v2
-      with:
-        name: python.zip
-        path: python.zip
+      run: aws s3 cp python.zip s3://fa-dlq-failed-event-messages/python.zip
 
     - name: Create Lambda layer
       run: |
