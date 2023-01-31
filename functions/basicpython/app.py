@@ -8,4 +8,5 @@ def methodTwo():
 def methodThree():
     return True
 
-    
+def methodFour():
+    return False
