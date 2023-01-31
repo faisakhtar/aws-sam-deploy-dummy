@@ -19,7 +19,6 @@ jobs:
         python -m pip install --upgrade pip
         cd tests/unit_tests
         pip install -r requirements.txt
-          - name: Install dependencies
     - name: Execeute Unit tests
       run: |
         python -m unittest discover -s . -p "*_tests.py" -v
