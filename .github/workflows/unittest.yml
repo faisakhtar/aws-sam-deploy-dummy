@@ -22,7 +22,6 @@ jobs:
     - name: Execeute Unit tests
       run: |
         cd tests/unit_tests
-        pwd
         python -m unittest discover -s . -p "*_tests.py" -v
 
 
