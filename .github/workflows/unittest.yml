@@ -21,7 +21,8 @@ jobs:
         pip install -r requirements.txt
     - name: Execeute Unit tests
       run: |
-        python -m unittest discover -s /tests/unit_tests -p "*_tests.py" -v
+        pwd
+        python -m unittest discover -s tests/unit_tests -p "*_tests.py" -v
 
 
 
