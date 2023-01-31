@@ -27,3 +27,9 @@ def lambda_handler(event, context):
     )
 
     return response
+
+def do_something_1():
+    return "Sample"
+
+def do_something_2():
+    return "Sample2"
