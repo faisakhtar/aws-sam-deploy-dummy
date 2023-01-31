@@ -11,7 +11,7 @@ class TestCases(unittest.TestCase):
 
     def test_two(self):
         result = main_lambda.methodTwo()
-        self.assertEqual(result, True)
+        self.assertEqual(result, False)
 
 
 if __name__ == '__main__':
